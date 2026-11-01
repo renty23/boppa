@@ -5,8 +5,8 @@
   "version": "0.1.0",
   "name": "YouTube Music",
   "mediaKind": "music",
-  "author": "/u/renty23",
-  "gitUrl": "https://github.com/renty23/boppa",
+  "author": "/u/rentyd",
+  "gitUrl": "https://github.com/rentyd/boppa",
   "allowedUrls": [
     "music.youtube.com",
     "www.youtube.com",
