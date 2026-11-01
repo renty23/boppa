@@ -5,8 +5,8 @@
   "version": "0.1.0",
   "name": "SoundCloud",
   "mediaKind": "music",
-  "author": "/u/renty23",
-  "gitUrl": "https://github.com/renty23/boppa",
+  "author": "/u/rentyd",
+  "gitUrl": "https://github.com/rentyd/boppa",
   "highlightColor": "#FF5500",
   "allowedUrls": [
     "soundcloud.com",

@@ -3,7 +3,7 @@
   "private": true,
   "type": "module",
   "boppa": {
-    "baseUrl": "https://renty23.github.io/boppa"
+    "baseUrl": "https://rentyd.github.io/boppa"
   },
   "workspaces": [
     "tools/cli"
