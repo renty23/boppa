@@ -1,0 +1,29 @@
+{
+  "$schema": "../schema/manifest.v1.schema.json",
+  "id": "music.youtube.com",
+  "fqdn": "music.youtube.com",
+  "version": "0.1.0",
+  "name": "YouTube Music",
+  "mediaKind": "music",
+  "author": "/u/renty23",
+  "gitUrl": "https://github.com/renty23/boppa",
+  "allowedUrls": [
+    "music.youtube.com",
+    "www.youtube.com",
+    "*.googlevideo.com",
+    "jnn-pa.googleapis.com",
+    "www.google.com"
+  ],
+  "highlightColor": "#FF0000",
+  "trackTypes": [
+    { "id": "song", "name": { "one": "Song", "other": "Songs" }, "media": "audio", "belongsTo": ["album"] },
+    { "id": "video", "name": { "one": "Video", "other": "Videos" }, "media": "video", "belongsTo": [] }
+  ],
+  "profileTypes": [
+    { "id": "artist", "name": { "one": "Artist", "other": "Artists" } }
+  ],
+  "tracklistTypes": [
+    { "id": "album", "name": { "one": "Album", "other": "Albums" }, "presentation": "album" },
+    { "id": "playlist", "name": { "one": "Playlist", "other": "Playlists" }, "presentation": "playlist" }
+  ]
+}

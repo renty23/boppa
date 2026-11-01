@@ -1,0 +1,26 @@
+{
+  "$schema": "../schema/manifest.v1.schema.json",
+  "id": "soundcloud.com",
+  "fqdn": "soundcloud.com",
+  "version": "0.1.0",
+  "name": "SoundCloud",
+  "mediaKind": "music",
+  "author": "/u/renty23",
+  "gitUrl": "https://github.com/renty23/boppa",
+  "highlightColor": "#FF5500",
+  "allowedUrls": [
+    "soundcloud.com",
+    "*.sndcdn.com",
+    "*.soundcloud.cloud"
+  ],
+  "trackTypes": [
+    { "id": "song", "name": { "one": "Song", "other": "Songs" }, "media": "audio", "belongsTo": ["album"] }
+  ],
+  "profileTypes": [
+    { "id": "person", "name": { "one": "Person", "other": "People" } }
+  ],
+  "tracklistTypes": [
+    { "id": "album", "name": { "one": "Album", "other": "Albums" }, "presentation": "album" },
+    { "id": "playlist", "name": { "one": "Playlist", "other": "Playlists" }, "presentation": "playlist" }
+  ]
+}
