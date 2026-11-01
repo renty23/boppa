@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://static.boppa.app/schema/worker.v1.schema.json",
+  "title": "Boppa media source worker",
+  "description": "workers/<key>/config.json. A long-lived hidden WebView kept alive for the whole session. The key is the folder name; its scripts are workers/<key>/*.js and register RPC handlers via boppa.onRequest(fn, handler), which the playback container calls with boppa.worker(key).call(fn, arg).",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["title", "url"],
+  "properties": {
+    "$schema": { "type": "string" },
+    "title": { "type": "string", "minLength": 1 },
+    "url": { "type": "string", "minLength": 1 },
+    "customUserAgent": { "type": "string" }
+  }
+}

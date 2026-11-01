@@ -1,0 +1,51 @@
+name: Deploy
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: deploy
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - run: npm test
+      - run: npm run build
+      - run: npm run check-versions
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+      - id: deployment
+        uses: actions/deploy-pages@v4
+      - name: Check published headers
+        run: |
+          shopt -s nullglob
+          base="$(node -p 'JSON.parse(require("fs").readFileSync("package.json","utf8")).boppa.baseUrl')"
+          # New files can 404 for a short while after deploy until the edge picks them up.
+          for f in dist/*.boppa; do
+            url="$base/$(basename "$f")"
+            for attempt in 1 2 3 4 5 6; do
+              node tools/cli/src/cli.ts inspect "$url" && break
+              [ "$attempt" -lt 6 ] || exit 1
+              echo "Retrying $url in $((attempt * 10))s"
+              sleep $((attempt * 10))
+            done
+          done

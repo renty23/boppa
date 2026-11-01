@@ -1,0 +1,114 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://static.boppa.app/schema/manifest.v1.schema.json",
+  "title": "Boppa media source manifest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "fqdn", "version", "name", "trackTypes", "profileTypes", "tracklistTypes"],
+  "properties": {
+    "$schema": { "type": "string" },
+    "id": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Stable, unique identifier for the source, usually its domain. Never change it."
+    },
+    "fqdn": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Domain whose media this source serves, for example archive.org. Also the default allowedUrls entry and the base URL of playback/index.html. Sources that share an fqdn address the same saved media, and only one of them can be enabled at a time."
+    },
+    "version": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Free-form version. Change it on every release; the app applies an update when it differs."
+    },
+    "name": { "type": "string", "minLength": 1 },
+    "mediaKind": {
+      "type": "string",
+      "minLength": 1,
+      "description": "What the source offers, in lowercase, for example music, podcasts, or videos. Shown in the search prompt as Explore <mediaKind> on <name>. Defaults to media."
+    },
+    "author": { "type": "string" },
+    "gitUrl": {
+      "type": "string",
+      "minLength": 1,
+      "description": "URL of the git repository the source is developed in."
+    },
+    "highlightColor": {
+      "type": "string",
+      "pattern": "^#[0-9A-Fa-f]{6}$"
+    },
+    "allowedUrls": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 }
+    },
+    "trackTypes": {
+      "type": "array",
+      "description": "Kinds of tracks the source serves, in display order.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id"],
+        "properties": {
+          "id": { "$ref": "#/$defs/typeId" },
+          "name": { "$ref": "#/$defs/pluralName" },
+          "media": { "enum": ["audio", "video"] },
+          "belongsTo": {
+            "type": "array",
+            "items": { "$ref": "#/$defs/typeId" },
+            "description": "Tracklist types a track of this type can belong to, in priority order."
+          }
+        }
+      }
+    },
+    "profileTypes": {
+      "type": "array",
+      "description": "Kinds of profiles (artists, channels, users) the source serves, in display order.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id"],
+        "properties": {
+          "id": { "$ref": "#/$defs/typeId" },
+          "name": { "$ref": "#/$defs/pluralName" }
+        }
+      }
+    },
+    "tracklistTypes": {
+      "type": "array",
+      "description": "Kinds of tracklists the source serves, in display order.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id"],
+        "properties": {
+          "id": { "$ref": "#/$defs/typeId" },
+          "name": { "$ref": "#/$defs/pluralName" },
+          "presentation": { "enum": ["album", "playlist"] }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "typeId": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9_-]+$",
+      "description": "Stable identifier for the type. It names the type's script files, and the app groups the library by it across sources."
+    },
+    "pluralName": {
+      "description": "Display name. A string is the singular and gets an \"s\" for the plural; use { one, other } for irregular plurals.",
+      "oneOf": [
+        { "type": "string", "minLength": 1 },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["one"],
+          "properties": {
+            "one": { "type": "string", "minLength": 1 },
+            "other": { "type": "string", "minLength": 1 }
+          }
+        }
+      ]
+    }
+  }
+}

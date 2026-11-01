@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://static.boppa.app/schema/popup.v1.schema.json",
+  "title": "Boppa media source popup",
+  "description": "popup/<id>/config.json. The id is the folder name, as passed to boppa.popup(id); its scripts are popup/<id>/*.js.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["title", "url"],
+  "properties": {
+    "$schema": { "type": "string" },
+    "title": { "type": "string", "minLength": 1 },
+    "url": { "type": "string", "minLength": 1 },
+    "customUserAgent": { "type": "string" }
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "name": "media-sources",
+  "private": true,
+  "type": "module",
+  "boppa": {
+    "baseUrl": "https://renty23.github.io/boppa"
+  },
+  "workspaces": [
+    "tools/cli"
+  ],
+  "engines": {
+    "node": ">=22.18"
+  },
+  "scripts": {
+    "validate": "node tools/cli/src/cli.ts validate",
+    "build": "node tools/cli/src/cli.ts build",
+    "check-versions": "node tools/cli/src/cli.ts check-versions",
+    "test": "node --test 'tools/cli/test/*.test.ts'",
+    "typecheck": "tsc -p tools/cli"
+  }
+}

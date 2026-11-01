@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://static.boppa.app/schema/iOS-config.v1.schema.json",
+  "title": "Boppa iOS config",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["format", "defaultMediaSources"],
+  "properties": {
+    "$schema": { "type": "string" },
+    "format": { "const": 1 },
+    "defaultMediaSources": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": { "type": "string", "pattern": "^https://.+\\.boppa$" }
+    }
+  }
+}
