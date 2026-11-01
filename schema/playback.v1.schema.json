@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://static.boppa.app/schema/playback.v1.schema.json",
+  "title": "Boppa media source playback",
+  "description": "playback/config.json. Only for sources that play through a WebView player page.",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "$schema": {
+      "type": "string"
+    },
+    "url": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Page to load as the player, instead of playback/index.html."
+    },
+    "customUserAgent": {
+      "type": "string"
+    }
+  }
+}
